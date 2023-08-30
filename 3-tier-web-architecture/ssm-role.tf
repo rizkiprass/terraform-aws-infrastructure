@@ -1,6 +1,6 @@
 #Create Role ssm core role
 resource "aws_iam_role" "ssm-core-role" {
-  name        = format("%s-ssm-core-role", var.project)
+  name               = format("%s-ssm-core-role", var.project)
   assume_role_policy = file("template/assumepolicy.json")
   tags = merge(local.common_tags, {
     Name = format("%s-ssm-core-role", var.project)
