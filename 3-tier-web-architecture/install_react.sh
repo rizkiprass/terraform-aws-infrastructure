@@ -4,7 +4,7 @@ sudo apt install nginx -y
 
 domain=rprass.my.id
 root="/var/www/$domain"
-block="/etc/nginx/sites-available/react"
+block="/etc/nginx/conf.d/react.conf"
 
 # Create the Document
 sudo mkdir -p $root
@@ -18,17 +18,19 @@ server {
 
   # react app & front-end files
   location / {
-    root /var/www/rprass.my.id;
-    try_files $uri /index.html;
+    root /var/www/rprass.my.id/build;
+    try_files '$uri' /index.html;
   }
 
   # node api reverse proxy
-  location /api/data {
-    proxy_pass http://172.31.6.109:8080/;
+  location /api {
+    proxy_pass http://10.0.2.55:8080/api;
   }
 }
 EOF
-sudo ln -s /etc/nginx/sites-available/react /etc/nginx/sites-enabled/
+
+sudo sed -i 's/include \/etc\/nginx\/sites-enabled\/\*;/# include \/etc\/nginx\/sites-enabled\/*;/' /etc/nginx/nginx.conf
+
 # Test configuration and reload if successful
 sudo nginx -t && sudo systemctl reload nginx
 
@@ -47,9 +49,10 @@ sudo apt-get install nodejs -y
 
 cd /home/ubuntu
 git clone https://github.com/rizkiprass/rp-medium-react.git
+cd ./rp-medium-react
 sudo npm i
 sudo npm run build
-sudo cp -R /home/ubuntu/rp-medium-react/build/ /var/www/html/rprass.my.id
+sudo cp -R /home/ubuntu/rp-medium-react/build/ /var/www/rprass.my.id
 
 
 #to run use sudo npm run start

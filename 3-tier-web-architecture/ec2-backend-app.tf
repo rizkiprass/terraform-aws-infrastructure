@@ -7,7 +7,7 @@ resource "aws_instance" "node-app" {
   ami                         = "ami-053b0d53c279acc90"
   instance_type               = "t3.micro"
   associate_public_ip_address = "false"
-  key_name                    = "sandbox-key"
+  key_name                    = aws_key_pair.webmaster-key.key_name
   subnet_id                   = module.vpc.private_subnets[0]
   iam_instance_profile        = aws_iam_instance_profile.ssm-profile.name
   user_data                   = file("install_node.sh")
