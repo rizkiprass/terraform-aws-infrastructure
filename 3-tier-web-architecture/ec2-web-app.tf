@@ -4,7 +4,7 @@ locals {
 
 //Server Private web
 resource "aws_instance" "web-app" {
-  ami                         = "ami-053b0d53c279acc90"
+  ami                         = "ami-0261755bbcb8c4a84"
   instance_type               = "t3.micro"
   associate_public_ip_address = "false"
   key_name                    = "sandbox-key"
