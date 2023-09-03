@@ -3,6 +3,8 @@ sudo apt-get update
 sudo apt-get install -y nodejs
 apt install npm -y
 
+mkdir /home/ubuntu/test
+
 cd /home/ubuntu
 sudo touch test1.txt
 touch test2.txt

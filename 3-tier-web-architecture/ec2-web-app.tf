@@ -31,6 +31,8 @@ resource "aws_instance" "web-app" {
     prevent_destroy = false
   }
 
+  depends_on = [module.vpc.natgw_ids]
+
   tags = merge(local.common_tags, {
     Name   = local.web_name,
     OS     = "Ubuntu",

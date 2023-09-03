@@ -8,9 +8,7 @@ provider "aws" {
 #  required_providers {
 #    aws = {
 #      source  = "hashicorp/aws"
-#      version = "~> 4.16"
+#      version = "~> 5.0"  # Replace with your desired version constraint
 #    }
 #  }
-#
-#  required_version = ">= 1.2.0"
 #}
