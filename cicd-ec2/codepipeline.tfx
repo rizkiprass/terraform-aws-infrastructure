@@ -1,6 +1,4 @@
-## DEVELOPMENT ##############################################################################################
-#############################################################################################################
-
+########## Supported resources ###############
 data "aws_iam_policy_document" "assume_by_pipeline-role" {
   statement {
     sid     = "AllowAssumeByPipeline"
@@ -97,12 +95,13 @@ data "aws_iam_policy_document" "pipeline" {
 resource "aws_sns_topic" "sns" {
   name = "${var.project}-codepipeline-sns"
 }
+
 resource "aws_iam_role_policy" "pipeline" {
   role   = aws_iam_role.pipeline-service-role.name
   policy = data.aws_iam_policy_document.pipeline.json
 }
 
-################# CREATE PIPELINE #################
+################# Create pipeline #################
 resource "aws_codepipeline" "react-pipeline" {
   name     = "${var.project}-${var.app_name}-pipeline"
   role_arn = aws_iam_role.pipeline-service-role.arn
@@ -160,8 +159,8 @@ resource "aws_codepipeline" "react-pipeline" {
       input_artifacts = ["build_output"]
       version         = "1"
       configuration = {
-        ApplicationName     = aws_codedeploy_app.sandbox-deploy.name
-        DeploymentGroupName = aws_codedeploy_deployment_group.sandbox-deployment.deployment_group_name
+        ApplicationName     = aws_codedeploy_app.deploy.name
+        DeploymentGroupName = aws_codedeploy_deployment_group.deployment.deployment_group_name
       }
     }
   }
