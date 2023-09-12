@@ -54,7 +54,7 @@ sudo apt-get update
 sudo apt-get install nodejs -y
 
 cd /home/ubuntu
-git clone -b simple https://github.com/rizkiprass/rp-medium-react.git
+git clone -b simple-dev https://github.com/rizkiprass/rp-medium-react.git
 cd ./rp-medium-react
 sudo echo -e "REACT_APP_DB_ENDPOINT=/db\nREACT_APP_API_ENDPOINT=/api" > .env
 sudo npm i

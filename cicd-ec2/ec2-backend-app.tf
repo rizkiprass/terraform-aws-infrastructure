@@ -31,6 +31,8 @@ resource "aws_instance" "node-app" {
     prevent_destroy = false
   }
 
+  depends_on = [module.vpc.natgw_ids]
+
   tags = merge(local.common_tags, {
     Name   = local.node_name,
     OS     = "Ubuntu",
