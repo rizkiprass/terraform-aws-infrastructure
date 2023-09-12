@@ -25,11 +25,6 @@ server {
     root /var/www/rprass.my.id/build;
     try_files /index.html;
   }
-
-  # node api reverse proxy
-  location /api {
-    proxy_pass http://10.0.2.188:8080/api;
-  }
 }
 EOF
 
@@ -59,7 +54,7 @@ git clone -b simple-dev https://github.com/rizkiprass/rp-medium-react.git
 cd ./rp-medium-react
 
 #install dependency
-sudo echo -e "REACT_APP_DB_ENDPOINT=http://10.0.2.188:8080/db\nREACT_APP_API_ENDPOINT=http://10.0.2.188:8080/api" > .env
+sudo echo -e "REACT_APP_DB_ENDPOINT=/db\nREACT_APP_API_ENDPOINT=/api" > .env
 sudo npm i
 sudo npm run build
 sudo cp -R /home/ubuntu/rp-medium-react/build/ /var/www/rprass.my.id
