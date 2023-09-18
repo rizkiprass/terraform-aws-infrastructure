@@ -1,10 +1,10 @@
 variable "aws_region" {
   description = "AWS Region"
-  default     = "eu-west-3"
+  default     = "us-east-1"
 }
 
 variable "region" {
-  default = "eu-west-3"
+  default = "us-east-1"
 }
 
 variable "cidr" {
