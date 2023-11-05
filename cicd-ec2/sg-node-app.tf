@@ -8,7 +8,7 @@ resource "aws_security_group" "node-sg" {
     to_port   = 8080
     protocol  = "tcp"
     cidr_blocks = [
-    var.cidr]
+    "0.0.0.0/0"]
     description = "node port"
   }
 
@@ -17,7 +17,7 @@ resource "aws_security_group" "node-sg" {
     to_port   = 22
     protocol  = "tcp"
     cidr_blocks = [
-    var.cidr]
+    "0.0.0.0/0"]
     description = "ssh"
   }
 
