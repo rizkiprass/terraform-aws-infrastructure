@@ -34,13 +34,13 @@ sed -i 's/^bind-address.*/bind-address = 0.0.0.0/' /etc/mysql/mysql.conf.d/mysql
 mysql -e "CREATE DATABASE ecommerce_db;"
 
 # Create a sample table in the new database
-TABLE_NAME="user"
+TABLE_NAME="users"
 
 mysql -u root ecommerce_db <<MYSQL_SCRIPT
 CREATE TABLE $TABLE_NAME (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
-  email VARCHAR(255) NOT NULL
+  email VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL
 );
 MYSQL_SCRIPT
 
