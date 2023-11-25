@@ -17,6 +17,8 @@ touch test2.txt
 git clone -b dev https://github.com/rizkiprass/rp-medium-node.git
 cd ./rp-medium-node
 sudo npm i
+sudo chown -R ubuntu:ubuntu /home/ubuntu/rp-medium-node/uploads
+sudo chmod -R u+w /home/ubuntu/rp-medium-node/uploads
 
 sudo npm install -g pm2
 pm2 start server.js
