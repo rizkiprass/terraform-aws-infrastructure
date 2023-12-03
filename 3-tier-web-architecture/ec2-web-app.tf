@@ -4,13 +4,13 @@ locals {
 
 //Server Private web
 resource "aws_instance" "web-app" {
-  ami                         = "ami-0261755bbcb8c4a84"
+  ami                         = "ami-06aa3f7caf3a30282"
   instance_type               = "t3.micro"
   associate_public_ip_address = "false"
   key_name                    = aws_key_pair.webmaster-key.key_name
   subnet_id                   = module.vpc.private_subnets[0]
   iam_instance_profile        = aws_iam_instance_profile.ssm-profile.name
-  user_data                   = file("install_react.sh")
+#  user_data                   = file("install_react.sh")
   metadata_options {
     http_endpoint = "enabled"
     http_tokens   = "required"

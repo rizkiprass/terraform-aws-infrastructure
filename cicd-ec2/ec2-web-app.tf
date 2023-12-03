@@ -4,8 +4,8 @@ locals {
 
 //Server Private web
 resource "aws_instance" "web-app" {
-#  ami                         = data.aws_ami.ubuntu_20.id
-  ami                         = "ami-0261755bbcb8c4a84"
+  ami                         = data.aws_ami.ubuntu_20.id
+#  ami                         = "ami-0261755bbcb8c4a84"
   instance_type               = "t3.micro"
   associate_public_ip_address = "false"
   key_name                    = aws_key_pair.webmaster-key.key_name

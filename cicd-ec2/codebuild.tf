@@ -101,6 +101,6 @@ resource "aws_codebuild_project" "react" {
 
     source {
     type            = "CODECOMMIT"
-    location        = "https://git-codecommit.eu-west-3.amazonaws.com/v1/repos/pras-react-codecommit"
+    location        = aws_codecommit_repository.react.clone_url_http
   }
   }

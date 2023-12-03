@@ -7,9 +7,9 @@ resource "aws_instance" "node-app" {
   ami = data.aws_ami.ubuntu_20.id
   #  ami                         = "ami-0261755bbcb8c4a84"
   instance_type               = "t3.medium"
-  associate_public_ip_address = "true"
+  associate_public_ip_address = "false"
   key_name                    = aws_key_pair.webmaster-key.key_name
-  subnet_id                   = module.vpc.public_subnets[0]
+  subnet_id                   = module.vpc.private_subnets[0]
   iam_instance_profile        = aws_iam_instance_profile.ssm-profile.name
   user_data                   = file("./user_data/install_node.sh")
   metadata_options {
@@ -30,7 +30,7 @@ resource "aws_instance" "node-app" {
 
   lifecycle {
     prevent_destroy = false
-    ignore_changes  = []
+    ignore_changes = [associate_public_ip_address]
   }
 
   depends_on = [module.vpc.natgw_ids]

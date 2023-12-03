@@ -3,7 +3,7 @@ locals {
 }
 
 //Server Private web
-resource "aws_instance" "web-app" {
+resource "aws_instance" "db" {
   ami = data.aws_ami.ubuntu_20.id
   #  ami                         = "ami-0261755bbcb8c4a84"
   instance_type               = "t3.medium"
@@ -38,6 +38,5 @@ resource "aws_instance" "web-app" {
     Name       = local.db_name,
     OS         = "Ubuntu",
     Backup     = "DailyBackup" # TODO: Set Backup Rules
-    codedeploy = "yes"
   })
 }

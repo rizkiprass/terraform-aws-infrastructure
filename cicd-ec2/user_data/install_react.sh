@@ -28,7 +28,7 @@ server {
 
   # node api reverse proxy
   location /api {
-    proxy_pass http://10.0.2.188:8080/api;
+    proxy_pass http://10.0.2.210:8080/api;
   }
 }
 EOF
@@ -55,7 +55,7 @@ sudo apt-get install nodejs -y
 
 #clone git
 cd /home/ubuntu
-git clone -b simple-dev https://github.com/rizkiprass/rp-medium-react.git
+git clone -b simple https://github.com/rizkiprass/rp-medium-react.git
 cd ./rp-medium-react
 
 #install dependency

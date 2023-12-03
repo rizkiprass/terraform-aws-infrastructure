@@ -143,7 +143,7 @@ resource "aws_codepipeline" "react-pipeline" {
       version          = "1"
 
       configuration = {
-        ProjectName = "test"
+        ProjectName = aws_codebuild_project.react.name
       }
     }
   }
