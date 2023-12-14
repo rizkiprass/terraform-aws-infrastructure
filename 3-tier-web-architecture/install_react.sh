@@ -28,7 +28,7 @@ server {
 
   # node api reverse proxy
   location /api {
-    proxy_pass http://10.0.2.92:8080/api;
+    proxy_pass http://10.0.2.210:8080/api;
   }
 }
 EOF
@@ -53,10 +53,13 @@ echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.co
 sudo apt-get update
 sudo apt-get install nodejs -y
 
+#clone git
 cd /home/ubuntu
-git clone https://github.com/rizkiprass/rp-medium-react.git
+git clone -b dev https://github.com/rizkiprass/rp-medium-react.git
 cd ./rp-medium-react
-sudo echo -e "REACT_APP_DB_ENDPOINT=/db\nREACT_APP_API_ENDPOINT=/api" > .env
+
+#install dependency
+#sudo echo -e "REACT_APP_DB_ENDPOINT=http://10.0.2.188:8080/db\nREACT_APP_API_ENDPOINT=http://10.0.2.188:8080/api" > .env
 sudo npm i
 sudo npm run build
 sudo cp -R /home/ubuntu/rp-medium-react/build/ /var/www/rprass.my.id

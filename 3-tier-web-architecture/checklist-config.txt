@@ -1,0 +1,15 @@
+1. remove state lb
+2. create key pair for ovpn
+3. create .env at node server
+#aws
+DB_ENDPOINT="10.0.4.208"
+DB_PASS="Admin123"
+
+4. run node
+5. input url at env variable, regist cust using postman,
+6. create .env at react server
+REACT_APP_API_URL=http://10.0.0.8:8080
+
+db:
+app
+Admin123

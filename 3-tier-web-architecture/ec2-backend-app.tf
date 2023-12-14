@@ -4,13 +4,14 @@ locals {
 
 //Server Private web
 resource "aws_instance" "node-app" {
-  ami                         = "ami-06aa3f7caf3a30282"
-  instance_type               = "t3.micro"
+  ami                         = data.aws_ami.ubuntu_20.id
+#  ami                         = "ami-06aa3f7caf3a30282"
+  instance_type               = "t3.medium"
   associate_public_ip_address = "false"
   key_name                    = aws_key_pair.webmaster-key.key_name
-  subnet_id                   = module.vpc.private_subnets[0]
+  subnet_id                   = module.vpc.public_subnets[0]
   iam_instance_profile        = aws_iam_instance_profile.ssm-profile.name
-#  user_data                   = file("install_node.sh")
+  user_data                   = file("install_node.sh")
   metadata_options {
     http_endpoint = "enabled"
     http_tokens   = "required"
@@ -35,5 +36,13 @@ resource "aws_instance" "node-app" {
     Name   = local.node_name,
     OS     = "Ubuntu",
     Backup = "DailyBackup" # TODO: Set Backup Rules
+  })
+}
+
+resource "aws_eip" "backend" {
+  instance = aws_instance.node-app.id
+  vpc      = true
+  tags = merge(local.common_tags, {
+    Name = format("%s-EIP", local.node_name)
   })
 }

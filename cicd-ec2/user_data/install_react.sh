@@ -25,11 +25,6 @@ server {
     root /var/www/rprass.my.id/build;
     try_files /index.html;
   }
-
-  # node api reverse proxy
-  location /api {
-    proxy_pass http://10.0.2.210:8080/api;
-  }
 }
 EOF
 
@@ -64,6 +59,17 @@ sudo npm i
 sudo npm run build
 sudo cp -R /home/ubuntu/rp-medium-react/build/ /var/www/rprass.my.id
 
+#code deploy agent install
+sudo apt update -y
+sudo apt install ruby-full -y
+cd /home/ubuntu
+wget https://aws-codedeploy-us-east-1.s3.us-east-1.amazonaws.com/latest/install
+chmod +x ./install
+sudo ./install auto > /tmp/logfile
+
+sudo service codedeploy-agent status
+sudo service codedeploy-agent start
+sudo service codedeploy-agent status
 
 #to run use sudo npm run start
 
